@@ -7,10 +7,12 @@ from transformers import BloomTokenizerFast
 from petals import DistributedBloomForCausalLM
 
 import config
-
+import os
 
 logger = hivemind.get_logger(__file__)
 
+os.environ['TRANSFORMERS_CACHE'] = '~/cache/models'
+os.environ['HF_HOME'] = '~/cache/datasets'
 models = {}
 for model_name in config.MODEL_NAMES:
     logger.info(f"Loading tokenizer for {model_name}")
